@@ -94,6 +94,10 @@ def teacher_window(wb):
     nav.add(tab3, text="Manage tests")
     nav.pack(fill='both', expand=True)
 
+    def closing():
+        if tkinter.messagebox.askokcancel("Quit", "Do you want to quit?"):
+            teacher_window.destroy()
+
     def create_test():
         global count
         name = test_name_ent.get()
@@ -249,23 +253,7 @@ def teacher_window(wb):
     next_ques_btn.grid(row=10, column=1)
     create_test_btn.grid(row=11, column=1)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    teacher_window.protocol("WM_DELETE_WINDOW", closing)
 
 log_lbl = tkinter.Label(login_window, text="login",font=("Arial, 10"))
 log_ent = tkinter.Entry(login_window,width=20,font=("Arial, 12"))
@@ -280,6 +268,5 @@ pass_lbl.place(x=10,y=55)
 pass_ent.place(x=10,y=80)
 log_btn.place(x=10,y=110)
 reg_btn.place(x=80,y=110)
-
 
 login_window.mainloop()
