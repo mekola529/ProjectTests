@@ -120,11 +120,17 @@ def teacher_window(wb):
 
         link = test_level + "\\" + name + ".csv"
 
-        with open(link, "a", encoding="utf-8", newline="") as file:
-            writer = csv.DictWriter(file,
-                                    fieldnames=["question", "answer1", "answer2", "answer3", "answer4", "right_answer"],
-                                    delimiter=";")
-            writer.writerow(data)
+        if count == 1:
+            with open(link, "a", encoding="utf-8", newline="") as file:
+                writer = csv.DictWriter(file, fieldnames=["question", "answer1", "answer2", "answer3", "answer4",
+                                                          "right_answer"], delimiter=";")
+                writer.writeheader()
+                writer.writerow(data)
+        else:
+            with open(link, "a", encoding="utf-8", newline="") as file:
+                writer = csv.DictWriter(file, fieldnames=["question", "answer1", "answer2", "answer3", "answer4",
+                                                          "right_answer"], delimiter=";")
+                writer.writerow(data)
 
         question_ent.delete(0, 'end')
         answ1.delete(0, 'end')
